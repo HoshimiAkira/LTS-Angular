@@ -1,0 +1,35 @@
+.sidenav-container {
+    height: 100%;
+    
+  }
+  
+  .sidenav {
+    width: 200px;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    
+  }
+  div.context{
+    margin-left: 20px;
+    margin-top:20px;
+    display: flex;
+  }
+  div.list{
+    width: 15%;
+  }
+  div.operation{
+    margin-left: 1%;
+    width: 70%;
+  }
+  .hover-effect {
+    background-color: #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }

@@ -1,0 +1,20 @@
+<div class="login">
+    <h2>Welcome to LTS-Chat! Please login.</h2>
+    <form class="login-input">
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Uuid</mat-label>
+            <input matInput placeholder="User Name" type="text" [formControl]="loginControl" appearance="fill" [(ngModel)]="uuid" name="uuid">
+        </mat-form-field>
+        <p></p>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" [formControl]="loginControl" appearance="fill" [(ngModel)]="password" name="password">
+        </mat-form-field>
+        <p class="error" *ngIf="webService.message != null">
+            {{webService.message}}
+        </p>
+        <p></p>
+        <button mat-raised-button color="primary" (click)="login()">Login</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="register()">Sign up</button>
+    </form>
+</div>
