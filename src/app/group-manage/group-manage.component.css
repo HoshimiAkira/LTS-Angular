@@ -3,11 +3,44 @@ div.context{
     margin-top:20px;
     display: flex;
     flex-wrap: wrap;
-  }
-  h3{
     width: 100%;
-  }
-  .hover-effect {
-    background-color: #eee;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+}
+
+.group-list{
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 20%;
+}
+div.change{
+    width:100%
+}
+.course-list{
+    font-size: 16px;
+    margin-top: 5px;
+}
+.user-list{
+    margin-left: 2%;
+    margin-bottom: 20px;
+    width: 70%;
+}
+mat-card.info{
+    margin-top:5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    white-space: pre-wrap; 
+    tab-size: 30; 
+    display: flex;
+    width: 100%;
+}
+.add-students{
+    display: flex;
+    width: 100%;
+}
+.add-students-list{
+    width: 50%;
+}
+.add-students-result{
+    width: 50%;
+}

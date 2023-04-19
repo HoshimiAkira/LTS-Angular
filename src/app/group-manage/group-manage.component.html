@@ -1,10 +1,50 @@
 <div class="context">
-    <h3>Group Management</h3>
-    <p></p>
-    <div class="groupList">
-        <h4>Group List</h4>
+    <h2>Group Management</h2>
+    <div class="change"></div>
+    <div class="group-list">
+        <h3>Group List</h3>
+        <div class="course-list" hoverEffect *ngFor = "let course of courses | async" (click)="getCourseInfo(course.uuid)">
+            <p>{{course.courseName}}</p>
+            <mat-divider></mat-divider>
+        </div>
     </div>
-    <div class="userList">
-        <h4>User List</h4>
+    <div class="user-list">
+        <h3>Course Information</h3>
+        <div class="course-list"  *ngFor = "let courseInfo of courseInfo0 | async">
+            <h4>Teachers</h4>
+            <mat-card  hoverEffect class="info" *ngFor = "let teacher of courseInfo.teachers">
+                {{teacher.userName}}&#9;{{teacher.uuid}}
+            </mat-card>
+            <h4>Students</h4>
+            <mat-card hoverEffect class="info" *ngFor = "let student of courseInfo.students">
+                <div class="card-info">
+                    {{student.userName}}&#9;{{student.uuid}}&#9;{{student.major}}&nbsp;&nbsp;&nbsp;
+                    <button mat-raised-button color="warn" (click)="deleteStudent(student.uuid)"><h5>Delete</h5></button>
+                </div>
+            </mat-card>
+            <h4>Operation</h4>
+            <button mat-raised-button color="primary" (click)="navigate('add')"><h5>Add new students</h5></button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button color="warn"><h5>Delete the group</h5></button>&nbsp;&nbsp;&nbsp;
+            <div class="add-students"*ngIf="show=='add'">
+                <div class="add-students-list">
+                    <h4>Search student</h4>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Student name</mat-label>
+                        <input matInput placeholder="Title" appearance="fill" [(ngModel)]="search" name="search">
+                    </mat-form-field>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button color="primary" (click)="searchStudnet()"><h5>Search</h5></button>
+                </div>
+                <div class="add-students-result">
+                    <h4>Result List</h4>
+                    <mat-card class="info" hoverEffect *ngFor = "let student of resultShow">
+                        {{student.userName}}&#9;{{student.uuid}}
+                    </mat-card>
+                </div>
+                
+            </div>
+            
+        </div>
     </div>
+    
 </div>

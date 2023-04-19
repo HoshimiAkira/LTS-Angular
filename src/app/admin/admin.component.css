@@ -23,11 +23,11 @@
     display: flex;
   }
   div.list{
-    width: 15%;
+    width: 18%;
   }
   div.operation{
     margin-left: 1%;
-    width: 70%;
+    width: 80%;
   }
   .hover-effect {
     background-color: #eee;
