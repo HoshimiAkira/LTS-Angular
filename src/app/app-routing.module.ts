@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth-guard';
 import { GroupManageComponent } from './group-manage/group-manage.component';
+import { InformationComponent } from './information/information.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path:"groupManage",
     component:GroupManageComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path:"userInfo",
+    component:InformationComponent,
     canActivate:[AuthGuard]
   },
   {

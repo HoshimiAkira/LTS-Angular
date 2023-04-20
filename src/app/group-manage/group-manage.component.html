@@ -25,7 +25,7 @@
             <h4>Operation</h4>
             <button mat-raised-button color="primary" (click)="navigate('add')"><h5>Add new students</h5></button>&nbsp;&nbsp;&nbsp;
             <button mat-raised-button color="warn"><h5>Delete the group</h5></button>&nbsp;&nbsp;&nbsp;
-            <div class="add-students"*ngIf="show=='add'">
+            <div class="add-students" *ngIf="show=='add'">
                 <div class="add-students-list">
                     <h4>Search student</h4>
                     <mat-form-field appearance="fill">
@@ -33,13 +33,27 @@
                         <input matInput placeholder="Title" appearance="fill" [(ngModel)]="search" name="search">
                     </mat-form-field>
                     &nbsp;&nbsp;
-                    <button mat-raised-button color="primary" (click)="searchStudnet()"><h5>Search</h5></button>
+                    <button mat-raised-button color="primary" (click)="searchStudnets()"><h5>Search</h5></button>
+                    <br>
+                    <mat-card class="info" hoverEffect *ngFor = "let student of students | async">
+                        <div>
+                            {{student.userName}}&#9;{{student.uuid}}&#9;{{student.major}}&nbsp;&nbsp;&nbsp;
+                            <button mat-raised-button color="primary" (click)="add(student.userName,student.uuid)"><h5>Add</h5></button>
+                        </div>
+                    </mat-card>
                 </div>
                 <div class="add-students-result">
                     <h4>Result List</h4>
-                    <mat-card class="info" hoverEffect *ngFor = "let student of resultShow">
-                        {{student.userName}}&#9;{{student.uuid}}
-                    </mat-card>
+                    <button mat-raised-button color="primary" (click)="addStudents()"><h5>Add Students</h5></button>
+                    <br>
+                    <div class="result-list">
+                        <mat-card class="info" hoverEffect *ngFor = "let student of resultShow">
+                            <div>
+                                {{student.name}}&#9;{{student.uuid}}&#9;{{student.major}}&nbsp;&nbsp;&nbsp;
+                                <button mat-raised-button color="warn" (click)="delete(student.uuid)"><h5>Cancel</h5></button>
+                            </div>
+                        </mat-card>
+                    </div>
                 </div>
                 
             </div>

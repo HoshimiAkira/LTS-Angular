@@ -39,8 +39,12 @@ mat-card.info{
     width: 100%;
 }
 .add-students-list{
-    width: 50%;
+    width: 45%;
 }
 .add-students-result{
-    width: 50%;
+    margin-left: 2%;
+    width: 45%;
+}
+.result-list{
+    margin-top: 10%;
 }

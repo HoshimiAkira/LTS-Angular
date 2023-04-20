@@ -110,6 +110,48 @@ export class WebService {
         }
       });
     }
+    searchStudents(name:string){
+      var token:any="";
+        if(localStorage.getItem("token")!=null){
+            token=localStorage.getItem("token")
+        }
+        return this.http.get(
+            'http://localhost:8080/admin/courses/students',{
+                params:
+                {
+                    "token":token,"name":name
+                },
+            })
+    }
+    addStudents(list:any,course:any){
+      var token:any="";
+        if(localStorage.getItem("token")!=null){
+            token=localStorage.getItem("token")
+        }
+        let postData = new FormData();
+        postData.append("uuidList",list)
+        postData.append("courseUuid",course)
+        postData.append("token",token)
+        return this.http.post('http://localhost:8080/admin/courses/students', postData)
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            const dialogErrorRef = this.dialog.open(DialogComponent, {
+              width: '400px',
+              data: { title: 'Error', message: JSON.stringify(error["error"]["message"]) }
+            });
+            return throwError(error); 
+          })
+        )
+        .subscribe((response: any) => {
+          const dialogSuccessRef = this.dialog.open(DialogComponent, {
+            width: '400px',
+            data: { title: 'Success', message: (response["message"]) }
+          });
+          dialogSuccessRef.afterClosed().subscribe(result => {
+            window.location.reload();
+          });
+        });
+    }
     test(){
       var token:any="";
         if(localStorage.getItem("token")!=null){
