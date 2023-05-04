@@ -1,0 +1,10 @@
+<div class="context">   
+    <h2>Upload icon</h2>
+    <input [formControl]="fileControl" type="file" (change)="onFileSelected($event)">
+    <mat-spinner *ngIf="isLoading" color="primary"></mat-spinner>
+    <br>
+    <br>
+    <img *ngIf="imgurl" [src]="imgurl" />
+    <br>
+    <button mat-raised-button color="primary" (click)="upload()">Upload</button>
+</div>

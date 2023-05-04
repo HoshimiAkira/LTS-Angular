@@ -34,6 +34,7 @@ export class WebService {
           localStorage.setItem("username", response["username"]);
           localStorage.setItem("type", response["type"]);
           localStorage.setItem("uuid", response["uuid"]);
+          localStorage.setItem("icon", response["icon"]);
           this.router.navigate(["guide"]);
         });
     }
@@ -193,12 +194,25 @@ export class WebService {
       if(localStorage.getItem("token")!=null){
         token=localStorage.getItem("token")
       }
+      const data = { 'uuid': uuid, 'password': password }
+      return this.http.put('http://localhost:8080/user/password', data,{
+          params:
+          {
+              "token":token
+          },
+        });
+    }
+    uploadIcon(icon:any,uuid:any){
+      var token:any="";
+      if(localStorage.getItem("token")!=null){
+        token=localStorage.getItem("token")
+      }
       let postData = new FormData();
-        postData.append("password",password)
+        postData.append("icon",icon)
         postData.append("uuid",uuid)
         postData.append("token",token)
       return this.http.post(
-        'http://localhost:8080/user/password',postData);
+        'http://localhost:8080/user/icon',postData);
     }
     test(){
       var token:any="";

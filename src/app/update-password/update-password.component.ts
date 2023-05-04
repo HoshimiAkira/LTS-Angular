@@ -65,7 +65,8 @@ export class UpdatePasswordComponent {
     });
     const result = await dialogRef.afterClosed().toPromise();
     if (result) {
-      this.webService.updatePassword(this.password,this.uuid).subscribe(
+      const passwordValue = this.passwordForm.get('password')?.value
+      this.webService.updatePassword(passwordValue,this.uuid).subscribe(
         (response:any) => {
           const dialogSuccessRef = this.dialog.open(DialogComponent, {
             width: '400px',

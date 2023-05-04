@@ -31,7 +31,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { DialogComponent } from './dialog/dialog.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
-
+import { UploadIconComponent } from './upload-icon/upload-icon.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
     ConfirmDialogComponent,
     DialogComponent,
     CreateGroupComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    UploadIconComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
     MatCardModule,
     MatDividerModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [WebService,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService],

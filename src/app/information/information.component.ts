@@ -13,7 +13,7 @@ export class InformationComponent {
     {
       name: 'Upload icon',
       context: "Upload your headshot",
-      guide:"icon"
+      guide:"upload"
     },
     {
       name: 'Update password',
