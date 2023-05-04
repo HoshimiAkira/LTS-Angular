@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { WebService } from '../web.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(public webService: WebService,private router:Router) {}
+  constructor(public webService: WebService,private router:Router,private route: ActivatedRoute) {}
   folders=[
     {
       name: 'Group Management',
@@ -24,7 +24,9 @@ export class AdminComponent {
   navigate(guide:String){
     this.show=guide;
   }
-  
+  ngOnInit() {
+    
+  }
 }
 
 
