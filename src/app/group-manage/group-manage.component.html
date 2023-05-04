@@ -4,7 +4,11 @@
     <div class="group-list">
         <h3>Group List</h3>
         <div class="course-list" hoverEffect *ngFor = "let course of courses | async" (click)="getCourseInfo(course.uuid)">
-            <p>{{course.courseName}}</p>
+            {{course.courseName}}
+            <br>
+            <span class="course-id">Courseid:{{course.uuid}}</span>
+            <br>
+            <span class="course-id">Invite coude:{{course.invite}}</span>
             <mat-divider></mat-divider>
         </div>
     </div>
@@ -19,18 +23,21 @@
             <mat-card hoverEffect class="info" *ngFor = "let student of courseInfo.students">
                 <div class="card-info">
                     {{student.userName}}&#9;{{student.uuid}}&#9;{{student.major}}&nbsp;&nbsp;&nbsp;
-                    <button mat-raised-button color="warn" (click)="deleteStudent(student.uuid)"><h5>Delete</h5></button>
+                    <button mat-raised-button color="warn" (click)="deleteAndFetch(student.uuid)"><h5>Delete</h5></button>
                 </div>
             </mat-card>
             <h4>Operation</h4>
             <button mat-raised-button color="primary" (click)="navigate('add')"><h5>Add new students</h5></button>&nbsp;&nbsp;&nbsp;
-            <button mat-raised-button color="warn"><h5>Delete the group</h5></button>&nbsp;&nbsp;&nbsp;
-            <div class="add-students" *ngIf="show=='add'">
+            <button mat-raised-button color="primary" (click)="navigate('addTeachers')"><h5>Add new teachers</h5></button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="navigate('invite')"><h5>Change the invite code</h5></button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button color="warn" (click)="exit(uuid)"><h5>Exit the Group</h5></button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button color="warn" (click)="deleteGroup()"><h5>Delete the group</h5></button>&nbsp;&nbsp;&nbsp;
+            <div class="operation" *ngIf="show=='add'">
                 <div class="add-students-list">
                     <h4>Search student</h4>
                     <mat-form-field appearance="fill">
                         <mat-label>Student name</mat-label>
-                        <input matInput placeholder="Title" appearance="fill" [(ngModel)]="search" name="search">
+                        <input matInput placeholder="name" appearance="fill" [(ngModel)]="search" name="search">
                     </mat-form-field>
                     &nbsp;&nbsp;
                     <button mat-raised-button color="primary" (click)="searchStudnets()"><h5>Search</h5></button>
@@ -50,11 +57,58 @@
                         <mat-card class="info" hoverEffect *ngFor = "let student of resultShow">
                             <div>
                                 {{student.name}}&#9;{{student.uuid}}&#9;{{student.major}}&nbsp;&nbsp;&nbsp;
-                                <button mat-raised-button color="warn" (click)="delete(student.uuid)"><h5>Cancel</h5></button>
+                                <button mat-raised-button color="warn" (click)="cancel(student.uuid)"><h5>Cancel</h5></button>
                             </div>
                         </mat-card>
                     </div>
                 </div>
+                
+            </div>
+
+            <div class="operation" *ngIf="show=='addTeachers'">
+                <div class="add-students-list">
+                    <h4>Search teacher</h4>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Teacher name</mat-label>
+                        <input matInput placeholder="name" appearance="fill" [(ngModel)]="tSearch" name="tSearch">
+                    </mat-form-field>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button color="primary" (click)="searchTeachers()"><h5>Search</h5></button>
+                    <br>
+                    <mat-card class="info" hoverEffect *ngFor = "let teacher of teachers | async">
+                        <div>
+                            {{teacher.userName}}&#9;{{teacher.uuid}}&#9;{{teacher.major}}&nbsp;&nbsp;&nbsp;
+                            <button mat-raised-button color="primary" (click)="tAdd(teacher.userName,teacher.uuid)"><h5>Add</h5></button>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="add-students-result">
+                    <h4>Result List</h4>
+                    <button mat-raised-button color="primary" (click)="addTeachers()"><h5>Add Teachers</h5></button>
+                    <br>
+                    <div class="result-list">
+                        <mat-card class="info" hoverEffect *ngFor = "let teacher of tResultShow">
+                            <div>
+                                {{teacher.name}}&#9;{{teacher.uuid}}&#9;{{teacher.major}}&nbsp;&nbsp;&nbsp;
+                                <button mat-raised-button color="warn" (click)="tCancel(teacher.uuid)"><h5>Cancel</h5></button>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="operation" *ngIf="show=='invite'">
+                <div class="add-students-list">
+                    <h4>Change Invite code</h4>
+                    <mat-form-field appearance="fill">
+                        <mat-label>New Invite Code</mat-label>
+                        <input matInput placeholder="invite code" appearance="fill" [(ngModel)]="invite" name="invite">
+                    </mat-form-field>
+                    &nbsp;&nbsp;
+                <button mat-raised-button color="primary" (click)="changeInvite()"><h5>Change</h5></button>
+                </div>
+                
                 
             </div>
             

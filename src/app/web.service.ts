@@ -69,46 +69,21 @@ export class WebService {
               },
         })
     }
-    deleteStudent(list:any){
+    deleteStudent(list:any): Observable<any> {
       var token:any="";
-      this.message = null;
+      
       if(localStorage.getItem("token")!=null){
         token=localStorage.getItem("token")
       }
       var cUuid=list["courseUuid"]
-      var sUuid=list["studentUuid"]
-      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        width: '400px',
-        data: { title: 'Confirm Deletion', message: 'Are you sure you want to delete this student?' }
-      });
-    
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.http.delete(
-            'http://localhost:8080/admin/courses/'+cUuid+'/'+sUuid,{
-              params:
-              {
-                  "token":token
-              },
-            }).subscribe(
-              (response:any) => {
-                const dialogSuccessRef = this.dialog.open(DialogComponent, {
-                  width: '400px',
-                  data: { title: 'Success', message: (response["message"]) }
-                });
-                dialogSuccessRef.afterClosed().subscribe(result => {
-                  window.location.reload();
-                });
-              },
-              (error) => {
-                const dialogErrorRef = this.dialog.open(DialogComponent, {
-                  width: '400px',
-                  data: { title: 'Error', message: JSON.stringify(error["error"]["message"]) }
-                });
-              }
-            );
-        }
-      });
+      var uuid=list["studentUuid"]
+      return this.http.delete(
+        'http://localhost:8080/admin/courses/'+cUuid+'/'+uuid,{
+          params:
+          {
+              "token":token
+          },
+        });
     }
     searchStudents(name:string){
       var token:any="";
@@ -123,7 +98,20 @@ export class WebService {
                 },
             })
     }
-    addStudents(list:any,course:any){
+    searchTeachers(name:string){
+      var token:any="";
+        if(localStorage.getItem("token")!=null){
+            token=localStorage.getItem("token")
+        }
+        return this.http.get(
+            'http://localhost:8080/admin/courses/teachers',{
+                params:
+                {
+                    "token":token,"name":name
+                },
+            })
+    }
+    addStudents(list:any,course:any): Observable<any>{
       var token:any="";
         if(localStorage.getItem("token")!=null){
             token=localStorage.getItem("token")
@@ -132,25 +120,85 @@ export class WebService {
         postData.append("uuidList",list)
         postData.append("courseUuid",course)
         postData.append("token",token)
-        return this.http.post('http://localhost:8080/admin/courses/students', postData)
-        .pipe(
-          catchError((error: HttpErrorResponse) => {
-            const dialogErrorRef = this.dialog.open(DialogComponent, {
-              width: '400px',
-              data: { title: 'Error', message: JSON.stringify(error["error"]["message"]) }
-            });
-            return throwError(error); 
-          })
-        )
-        .subscribe((response: any) => {
-          const dialogSuccessRef = this.dialog.open(DialogComponent, {
-            width: '400px',
-            data: { title: 'Success', message: (response["message"]) }
-          });
-          dialogSuccessRef.afterClosed().subscribe(result => {
-            window.location.reload();
-          });
+        return this.http.post('http://localhost:8080/admin/courses/students', postData);
+    }
+    addTeachers(list:any,course:any): Observable<any>{
+      var token:any="";
+        if(localStorage.getItem("token")!=null){
+            token=localStorage.getItem("token")
+        }
+        let postData = new FormData();
+        postData.append("uuidList",list)
+        postData.append("courseUuid",course)
+        postData.append("token",token)
+        return this.http.post('http://localhost:8080/admin/courses/teachers', postData);
+    }
+    exit(list:any){
+      var token:any="";
+      
+      if(localStorage.getItem("token")!=null){
+        token=localStorage.getItem("token")
+      }
+      var cUuid=list["courseUuid"]
+      var uuid=list["teacherUuid"]
+      return this.http.delete(
+        'http://localhost:8080/admin/courses/'+cUuid+'/'+uuid,{
+          params:
+          {
+              "token":token
+          },
         });
+    }
+    deleteGroup(list:any){
+      var token:any="";
+      if(localStorage.getItem("token")!=null){
+        token=localStorage.getItem("token")
+      }
+      var uuid=list["courseUuid"]
+      return this.http.delete(
+        'http://localhost:8080/admin/courses/'+uuid,{
+          params:
+          {
+              "token":token
+          },
+        });
+    }
+    changeInvite(invite:any,uuid:any): Observable<any>{
+      var token:any="";
+        if(localStorage.getItem("token")!=null){
+            token=localStorage.getItem("token")
+        }
+        const data = { 'uuid': uuid, 'invite': invite }
+        return this.http.put('http://localhost:8080/admin/courses/'+uuid+'/invite', data,{
+          params:
+          {
+              "token":token
+          },
+        });
+    }
+    createGroup(name:any,uuid:any){
+      var token:any="";
+      if(localStorage.getItem("token")!=null){
+        token=localStorage.getItem("token")
+      }
+      let postData = new FormData();
+        postData.append("name",name)
+        postData.append("uuid",uuid)
+        postData.append("token",token)
+      return this.http.post(
+        'http://localhost:8080/admin/courses',postData);
+    }
+    updatePassword(password:any,uuid:any){
+      var token:any="";
+      if(localStorage.getItem("token")!=null){
+        token=localStorage.getItem("token")
+      }
+      let postData = new FormData();
+        postData.append("password",password)
+        postData.append("uuid",uuid)
+        postData.append("token",token)
+      return this.http.post(
+        'http://localhost:8080/user/password',postData);
     }
     test(){
       var token:any="";

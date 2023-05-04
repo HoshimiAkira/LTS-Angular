@@ -1,4 +1,17 @@
 
 div.context{
   margin-left: 20px;
+  margin-top:20px;
+  display: flex;
+}
+div.list{
+  width: 18%;
+}
+div.operation{
+  margin-left: 1%;
+  width: 80%;
+}
+.hover-effect {
+  background-color: #eee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

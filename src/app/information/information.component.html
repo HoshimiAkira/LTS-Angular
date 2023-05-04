@@ -1,6 +1,26 @@
 <app-list>
     <div class="context">
-
-      
+        <div class="list">
+            <mat-card>
+              <mat-list>
+                <div mat-subheader>Operation</div>
+                <mat-list-item hoverEffect *ngFor="let folder of folders" (click)="navigate(folder.guide)">
+                  <mat-icon matListItemIcon>folder</mat-icon>
+                  <div matListItemTitle>{{folder.name}}</div>
+                  <div matListItemLine>{{folder.context }}</div>
+                </mat-list-item>
+              </mat-list>
+            </mat-card>
+          </div>
+        <div class="operation">
+            <mat-card>
+                <app-update-password *ngIf="show=='password'"></app-update-password>
+                
+            </mat-card>
+            
+              
+          
+        </div>
     </div>
+        
 </app-list>

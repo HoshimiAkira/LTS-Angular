@@ -1,0 +1,13 @@
+<div class="context">
+    <h2>Create Group</h2>
+    <div class="change"></div>
+    <div class="group-list">
+        <h3>Group Infomation</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Teacher name</mat-label>
+            <input matInput placeholder="name" appearance="fill" [(ngModel)]="name" name="name">
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="create()"><h5>Create group</h5></button>
+    </div>
+</div>

@@ -18,6 +18,14 @@ div.change{
 .course-list{
     font-size: 16px;
     margin-top: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.course-id{
+    color: lightgrey; 
+    font-size: 14px; 
+    margin-left: 30px; 
 }
 .user-list{
     margin-left: 2%;
@@ -34,7 +42,7 @@ mat-card.info{
     display: flex;
     width: 100%;
 }
-.add-students{
+.operation{
     display: flex;
     width: 100%;
 }
@@ -45,6 +53,7 @@ mat-card.info{
     margin-left: 2%;
     width: 45%;
 }
+
 .result-list{
     margin-top: 10%;
 }

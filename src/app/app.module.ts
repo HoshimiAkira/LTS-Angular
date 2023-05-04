@@ -29,6 +29,8 @@ import { HoverEffectDirective } from './hover-effect';
 import { InformationComponent } from './information/information.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 
 
@@ -43,7 +45,9 @@ import { DialogComponent } from './dialog/dialog.component';
     HoverEffectDirective,
     InformationComponent,
     ConfirmDialogComponent,
-    DialogComponent
+    DialogComponent,
+    CreateGroupComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,
