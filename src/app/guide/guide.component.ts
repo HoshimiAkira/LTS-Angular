@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { WebsocketService } from '../webSocket.service';
 
 @Component({
   selector: 'app-guide',
@@ -10,11 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./guide.component.css']
 })
 export class GuideComponent {
-  constructor(private router:Router) {}
+  constructor(private router:Router,private websocketService: WebsocketService) {}
   token=localStorage.getItem("token")
   logout(){
     localStorage.clear()
     this.router.navigate(["login"])
+    this.websocketService.close();
   }
   login(){
     this.router.navigate(["login"])

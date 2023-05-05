@@ -6,10 +6,7 @@
         [disableClose]="(isHandset$ | async) === false">
         <a href="guide"><mat-toolbar><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" color="primary"></mat-icon>Main Menu</mat-toolbar></a>
         <div class="user-info" *ngIf="username!=null">
-          
-            <mat-icon *ngIf="url==null" aria-hidden="false" aria-label="Example home icon" fontIcon="home" color="primary"></mat-icon>
-            <img *ngIf="url!=null" [src]='url' class="ava">
-          
+            <img *ngIf="url!=null" [src]='url' class="ava">   
           <div class="info">
             {{username}}
             <br>
@@ -21,7 +18,7 @@
         
       <mat-nav-list>
         <a mat-list-item *ngIf="!identityCheck" href="admin">Admin Page</a>
-        <a mat-list-item href="#">Course Group</a>
+        <a mat-list-item href="group">Course Group</a>
         <a mat-list-item href="userInfo">User Infomation</a>
         
       </mat-nav-list>

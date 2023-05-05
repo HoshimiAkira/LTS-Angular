@@ -214,6 +214,11 @@ export class WebService {
       return this.http.post(
         'http://localhost:8080/user/icon',postData);
     }
+
+
+
+
+
     test(){
       var token:any="";
         if(localStorage.getItem("token")!=null){

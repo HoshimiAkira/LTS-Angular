@@ -1,0 +1,52 @@
+<app-list>
+    <div class="context">
+        <h2>Course Groups</h2>
+        <div class="change"></div>
+        <div class="group-list">
+            <h3>Group List</h3>
+            <mat-card>
+                <div class="course-list" hoverEffect *ngFor = "let course of courses | async" (click)="getCourseInfo(course.uuid)">
+                    {{course.courseName}}
+                    <br>
+                    <span class="course-id">Courseid:{{course.uuid}}</span>
+                    <br>
+                    <span class="course-id">Invite coude:{{course.invite}}</span>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-card>
+        </div>
+        <div class="group-member">
+            <h3>Group member</h3>
+            <mat-card>
+                <div class="user-list" *ngFor = "let courseInfo of courseInfo0 | async">
+                    <h4>Teachers</h4>
+                    <mat-card  hoverEffect class="info" *ngFor = "let teacher of courseInfo.teachers">
+                        <div class="card-info">
+                            <img [src]="'https://ltscapicon.blob.core.windows.net/icon/'+teacher.icon" class="ava">
+                            {{teacher.userName}}&#9;{{teacher.uuid}}
+                            <mat-icon  [ngClass]="{'online': check(teacher.uuid)}">fiber_manual_record</mat-icon>&nbsp;&nbsp;
+                            <div class="button">
+                                <button *ngIf="teacher.uuid!=uuid" mat-raised-button color="primary" (click)="sendMessage(teacher.uuid,teacher.userName)">Mes</button>&nbsp;&nbsp;
+                                <button *ngIf="teacher.uuid!=uuid"  [disabled]="!check(teacher.uuid)" mat-raised-button color="primary" >Chat</button>
+                            </div>
+                        </div>
+                    </mat-card>
+                    <h4>Students</h4>
+                    <mat-card hoverEffect class="info" *ngFor = "let student of courseInfo.students">
+                        <div class="card-info">
+                            <img [src]="'https://ltscapicon.blob.core.windows.net/icon/'+student.icon" class="ava">
+                            {{student.userName}}&#9;{{student.uuid}}&#9;{{student.major}}
+                            <mat-icon  [ngClass]="{'online': check(student.uuid)}">fiber_manual_record</mat-icon>&nbsp;&nbsp;
+                            <div class="button">
+                                <button *ngIf="student.uuid!=uuid" mat-raised-button color="primary" (click)="sendMessage(student.uuid,student.userName)">Mes</button>&nbsp;&nbsp;
+                                <button *ngIf="student.uuid!=uuid"  [disabled]="!check(student.uuid)" mat-raised-button color="primary">Chat</button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </mat-card>
+        </div>
+        
+        
+    </div>
+</app-list>

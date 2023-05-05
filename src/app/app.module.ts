@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { GuideComponent } from './guide/guide.component';
 import { ListComponent } from './list/list.component';
 import { GroupManageComponent } from './group-manage/group-manage.component';
-
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,8 +32,12 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { UploadIconComponent } from './upload-icon/upload-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { GroupComponent } from './group/group.component';
+const config: SocketIoConfig = { url: 'http://localhost:8080/websocket', options: {} };
+import { WebsocketService } from './webSocket.service';
 
-
+import { MsgComponent } from './msg/msg.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DialogComponent,
     CreateGroupComponent,
     UpdatePasswordComponent,
-    UploadIconComponent
+    UploadIconComponent,
+    GroupComponent,
+    MsgComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +74,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDividerModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    SocketIoModule.forRoot(config),
+
+
   ],
   providers: [WebService,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService],
+    JwtHelperService,WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

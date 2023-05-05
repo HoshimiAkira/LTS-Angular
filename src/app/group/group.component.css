@@ -1,0 +1,74 @@
+div.context{
+    margin-left: 20px;
+    margin-top:20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.group-list{
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 10%;
+}
+div.change{
+    width:100%
+}
+.course-list{
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.course-id{
+    color: lightgrey; 
+    font-size: 14px; 
+    margin-left: 30px; 
+}
+.group-member{
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 20%;
+}
+.user-list{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px
+}
+.card-info{
+    margin: 2px 2px 2px auto;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+  
+  .ava {
+    width: 12%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .info{
+    margin-top: 5px;
+  }
+  
+  .online {
+    color: green;
+  }
+  
+  .button{
+    margin-left: auto;
+    display: flex;
+    flex-direction: row-reverse;
+  }

@@ -1,4 +1,4 @@
-import { Component ,ChangeDetectorRef,NgZone, ApplicationRef} from '@angular/core';
+import { Component ,ChangeDetectorRef} from '@angular/core';
 import { WebService } from '../web.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./group-manage.component.css']
 })
 export class GroupManageComponent {
-  constructor(public webService: WebService,private router:Router,public dialog: MatDialog,private cdr: ChangeDetectorRef,private appRef: ApplicationRef,private zone: NgZone) {}
+  constructor(public webService: WebService,private router:Router,public dialog: MatDialog,private cdr: ChangeDetectorRef) {}
   courses:any;
   ngOnInit(){
     this.courses=this.webService.getCourses()
@@ -23,6 +23,8 @@ export class GroupManageComponent {
     teacherUuid:"",
   }
    getCourseInfo(courseUuid:string){
+    this.have=[];
+    this.tHave=[];
     this.list["courseUuid"]=courseUuid
     this.courseInfo0=  this.webService.getCourseInfo(this.list)
     this.show=null

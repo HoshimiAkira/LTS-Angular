@@ -3,20 +3,20 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
+import { interval } from 'rxjs';
+import { WebsocketService } from '../webSocket.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent {
+export class ListComponent{
   username:any;
   type:any;
   uuid:any;
-
   head:string="https://ltscapicon.blob.core.windows.net/icon/"
   url:any
-  constructor(private breakpointObserver: BreakpointObserver,private router:Router) {
+  constructor(private breakpointObserver: BreakpointObserver,private router:Router,private websocketService: WebsocketService) {
     const username=localStorage.getItem("username")
     const type=localStorage.getItem("type")
     const uuid=localStorage.getItem("uuid")
